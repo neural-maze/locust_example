@@ -1,0 +1,4 @@
+fastapi[standard]
+sqlmodel
+pydantic
+locust
