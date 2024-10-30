@@ -1,30 +1,45 @@
-from typing import Annotated
+from fastapi import FastAPI, HTTPException
+from .schemas import TextInput, SentimentOutput
 
-from fastapi import Depends, FastAPI, HTTPException
-from .database import get_session
-from .models import Album, Artist
+from transformers import pipeline
 
-from sqlmodel import Session, select
+from fastapi_cache import FastAPICache
+from fastapi_cache.backends.redis import RedisBackend
+from fastapi_cache.decorator import cache
+
+from redis import asyncio as aioredis
+from functools import lru_cache
+from contextlib import asynccontextmanager
 
 
-SessionDep = Annotated[Session, Depends(get_session)]
+@lru_cache(maxsize=1)
+def get_sentiment_analyzer():
+    """Initialize and cache the sentiment analysis pipeline"""
+    return pipeline("sentiment-analysis")
 
-app = FastAPI()
+@asynccontextmanager
+async def startup(_: FastAPI):
+    redis = aioredis.from_url("redis://localhost")
+    FastAPICache.init(RedisBackend(redis), prefix="sentiment-cache")
+    yield
+
+app = FastAPI(lifespan=startup)
 
 
 @app.get("/")
 async def root():
-    return {"message": "Load Testing API Example"}
+    return {"message": "This is an example API"}
 
-@app.post("/albums")
-async def get_albums_by_artist(
-    artist: Artist, 
-    session: SessionDep,    
-) -> list[Album]:
-    
-    statement = select(Album).where(Album.ArtistId == artist.ArtistId)
-    results = session.exec(statement).all()
-     
-    if not results:
-        raise HTTPException(status_code=404, detail="Artist or albums not found")
-    return list(results)
+@app.post("/predict-sentiment")
+# @cache(expire=3600)
+async def predict_sentiment(input: TextInput) -> SentimentOutput:
+    try: 
+        sentiment_analyzer = get_sentiment_analyzer()
+        result = sentiment_analyzer(input.text)
+        sentiment = result[0]
+        return SentimentOutput(
+            label=sentiment["label"],
+            score=sentiment["score"]
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail="Error processing request") from e
