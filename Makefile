@@ -1,25 +1,29 @@
 .PHONY: build up down logs clean restart
 
 # Build and start the application
-up:
+api-up:
 	docker-compose up --build -d
 
 # Build the application
-build:
+api-build:
 	docker-compose build
 
 # Stop and remove containers
-down:
+api-down:
 	docker-compose down
 
 # View logs
-logs:
+api-logs:
 	docker-compose logs -f api
 
 # Remove all containers and images
-clean:
+api-clean:
 	docker-compose down --rmi all --volumes --remove-orphans
 
 # Restart the application
-restart:
+api-restart:
 	docker-compose restart api
+
+# Run locust
+run-locust:
+	locust -f src/locustfile.py
