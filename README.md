@@ -12,7 +12,7 @@ The following sections will walk you through setting up the project, creating th
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Prerequisites](#prerequisites)
-- [Deploying the Example API with Docker](#deploying-the-example-api-with-docker)
+- [Running the API using Docker](#running-the-api-using-docker)
 - [Running Locust](#running-locust)
 - [Monitoring Results](#monitoring-results)
 
