@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="logo" src="static/diagram.gif" width=430 />
+    <img alt="logo" src="static/diagram.gif" width=450 />
     <h1 align="center">Load Testing Machine Learning Systems</h1>
     <h3 align="center">Running load tests on a FastAPI application using Locust</h3>
 </p>
