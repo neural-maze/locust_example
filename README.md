@@ -96,4 +96,8 @@ These metrics are helpful to understand how well your API performs under varying
 
 If you prefer a video tutorial, you can also check my YouTube video.
 
-<a href="https://youtu.be/31lSQ2xyFCA?si=Y1pQV9WhQMKiMigO"><img src="static/youtube_thumbnail.jpg" alt="Thumbnail" width="600"></a>
+<div align="center">
+    <a href="https://youtu.be/31lSQ2xyFCA?si=Y1pQV9WhQMKiMigO">
+        <img src="static/youtube_thumbnail.jpg" alt="Thumbnail" width="600">
+    </a>
+</div>
