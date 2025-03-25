@@ -15,7 +15,7 @@ The following sections will walk you through setting up the project, creating th
 - [Running the API using Docker](#running-the-api-using-docker)
 - [Running Locust](#running-locust)
 - [Monitoring Results](#monitoring-results)
-
+- [YouTube Video](#youtube-video)
 ---
 
 ## Project Overview
@@ -91,3 +91,9 @@ The Locust dashboard provides real-time statistics:
 These metrics are helpful to understand how well your API performs under varying loads.
 
 ![alt text](static/locust_graph.png)
+
+## YouTube Video
+
+If you prefer a video tutorial, you can also check my YouTube video.
+
+<a href="https://youtu.be/31lSQ2xyFCA?si=Y1pQV9WhQMKiMigO"><img src="static/youtube_thumbnail.jpg" alt="Thumbnail" width="600"></a>
