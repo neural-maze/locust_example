@@ -1,6 +1,6 @@
 <p align="center">
-    <img alt="logo" src="img/diagram.png" width=600 />
-    <h1 align="center">Load Testing Using Locust</h1>
+    <img alt="logo" src="static/diagram.gif" width=600 />
+    <h1 align="center">Load Testing Machine Learning Systems</h1>
     <h3 align="center">Running load tests on a FastAPI application using Locust</h3>
 </p>
 
@@ -47,18 +47,20 @@ git clone https://github.com/neural-maze/locust_example.git
 cd locust_example
 ```
 
-2. **Install required Python packages:**
+2. **Install dependencies:**
 
 ```bash
-pip install -r requirements.txt
+uv venv .venv
+source .venv/bin/activate
+uv pip install -e .
 ```
 
-## Deploying the Example API with Docker
+## Running the API using Docker
 
 The api/ directory contains a simple FastAPI app for sentiment analysis. Here’s how to set it up:
 
 ```bash
-docker-compose up --build
+make api-up
 ```
 
 If everything worked fine, you should be able to access the FastAPI application at `http://0.0.0.0:8000/`. If you want to check the available endpoints, use this route: `http://0.0.0.0:8000/docs`
@@ -66,15 +68,15 @@ If everything worked fine, you should be able to access the FastAPI application 
 ## Running Locust
 
 Once the API is running, you can start load testing with Locust. Take a look
-at the [locustfile](locustfile.py) to see how the load tests are defined in Locust. To start the Load Tests, run this command:
+at the [locustfile](src/locustfile.py) to see how the load tests are defined in Locust. To start the Load Tests, run this command:
 
 ```bash
-locust
+make run-locust
 ```
 
 Now it's time to access the Locust UI. Open your browser again and navigate to `http://0.0.0.0:8089`. Here you can specify the number of users to simulate and also the spawn rate. When you are OK with the params, click the "START" button! 
 
-![alt text](img/locust_home.png)
+![alt text](static/locust_home.png)
 
 ## Monitoring Results
 
@@ -88,4 +90,4 @@ The Locust dashboard provides real-time statistics:
 
 These metrics are helpful to understand how well your API performs under varying loads.
 
-![alt text](img/locust_graph.png)
+![alt text](static/locust_graph.png)
