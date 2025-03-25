@@ -35,7 +35,7 @@ The application exposes an endpoint where users can send text data and receive a
 Before proceeding, ensure you have the following installed:
 - **Python 3+**
 - **Docker** 
-- **pip** 
+- **uv** 
 
 
 ## Setting Up the Project
