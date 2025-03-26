@@ -14,10 +14,10 @@ COMMENTS = load_json_file(
     os.path.join(os.path.dirname(__file__), "data/example_comments.json")
 )
 
-class LoadTestAlbums(HttpUser):    
+class LoadTestSentiment(HttpUser):    
     wait_time = constant_pacing(1)
     
     @task
-    def post_albums(self):
+    def post_sentiment(self):
         comment = random.choice(COMMENTS)
         self.client.post("/predict-sentiment", json=comment)
